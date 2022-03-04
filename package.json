@@ -1,0 +1,22 @@
+{
+  "name": "deep-bib-api",
+  "version": "1.0.0",
+  "description": "An node js api to get scientifics papers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeepBib/backend.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DeepBib/backend/issues"
+  },
+  "homepage": "https://github.com/DeepBib/backend#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
