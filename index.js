@@ -3,7 +3,7 @@ const axios = require('axios');
 const xml2js = require('xml2js');
 const { response } = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -12,6 +12,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.get('/', (req, res) => res.send('Hello World!'));
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 app.get('/articles/:query', (req,res) => {
     const query = req.params.query;
