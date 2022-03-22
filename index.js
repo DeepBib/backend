@@ -46,6 +46,7 @@ app.get('/springer/:keyword', (req, res) => {
     });
 })
 
+app.get('/ieee', (req, res) => res.send('Salut IEEE!'));
 
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}!`)
