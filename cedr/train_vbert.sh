@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 cedr/train.py \--model vanilla_bert \--datafiles data/queries.tsv data/documents.tsv \--qrels data/qrels \--train_pairs data/train_pairs \--valid_run data/top3 \--model_out_dir models/vbert
