@@ -34,7 +34,7 @@ MODEL_MAP = {
     'cedr_pacrr': modeling.CedrPacrrRanker,
     'cedr_knrm': modeling.CedrKnrmRanker,
     'cedr_drmm': modeling.CedrDrmmRanker,
-    'sci_bert': modeling.SciBertRanker
+    'vanilla_sci_bert': modeling.VanillaSciBertRanker
 }
 
 
