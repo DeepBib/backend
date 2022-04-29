@@ -16,8 +16,9 @@ def main_cli():
     run = data.read_run_dict(args.run)
     if args.model_weights is not None:
         model.load(args.model_weights.name)
-    # train.run_model(model, dataset, run, args.out_path.name, desc='rerank')
-    train.write_run(train.run_model(model, dataset, run, desc='rerank'),args.out_path.name)
+    ## train.run_model(model, dataset, run, args.out_path.name, desc='rerank')
+    # train.write_run(train.run_model(model, dataset, run, desc='rerank'),args.out_path.name)
+    train.rerank_result(train.run_model(model, dataset, run, desc='rerank'),args.out_path.name)
 
 if __name__ == '__main__':
     main_cli()

@@ -2,7 +2,6 @@ import random
 from tqdm import tqdm
 import torch
 
-
 def read_datafiles(files):
     queries = {}
     docs = {}
