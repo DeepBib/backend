@@ -165,7 +165,8 @@ def rerank_result(rerank_run, runf):
         for qid in rerank_run:
             scores = list(sorted(rerank_run[qid].items(), key=lambda x: (x[1], x[0]), reverse=True))
             for i, (did, score) in enumerate(scores):
-                runfile.write(f'{did} {score}\n')
+                print(f'{did} {score}\n')
+# 		runfile.write(f'{did} {score}\n')
 
 def main_cli():
     parser = argparse.ArgumentParser('CEDR model training and validation')

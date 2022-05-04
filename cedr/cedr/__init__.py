@@ -1,6 +1,6 @@
-from . import data
-from . import extract_docs_from_index
-from . import modeling
-from . import modeling_util
-from . import rerank
-from . import train
+import data
+# import extract_docs_from_index
+import modeling
+import modeling_util
+import rerank
+import train
