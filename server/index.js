@@ -52,7 +52,14 @@ app.get('/results/:query', (req,res) => {
         console.log(error);
     });
     //-------------CREATION DE SPAWN 
-
+    const process = spawn('python',["./test.py", 
+                            query] ); 
+  
+    
+    
+    process.stdout.on('data', function(data) { 
+        console.log(data.string()); 
+    } )
     //---------------------APPEL SPAWN POUR LANCER LE PYTHON--------------------- 
     //------------------CHEMIN TEST ./test.py
 
