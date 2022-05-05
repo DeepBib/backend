@@ -53,8 +53,9 @@ app.get('/results/:query', (req,res) => {
     });
     //-------------CREATION DE SPAWN 
     const process = spawn('python',["./../cedr/rerank_vbert.py", query] ); // Fonction faut lancer le bon python avec le json reçu 
-  
+    console.log("TEST j'ai lancé ton python..");
     process.stdout.on('data', function(data) { 
+        console.log("J'ai peut-etre réussi mais à voir ...")
         console.log(data.toString()); 
     } )
 
