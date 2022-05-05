@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 //const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
 const NODE_ENV = process.env.NODE_ENV;
-const spawn = require("child_process"); 
+const spawn = require("child_process").spawn; 
 
 
 //--TUTO---------SPAWN NORMAL 
@@ -55,11 +55,10 @@ app.get('/results/:query', (req,res) => {
     const process = spawn('python',["./test.py", 
                             query] ); 
   
-    
-    
     process.stdout.on('data', function(data) { 
-        console.log(data.string()); 
+        console.log(data.toString()); 
     } )
+ 
     //---------------------APPEL SPAWN POUR LANCER LE PYTHON--------------------- 
     //------------------CHEMIN TEST ./test.py
 
