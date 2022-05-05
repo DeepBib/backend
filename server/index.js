@@ -52,14 +52,17 @@ app.get('/results/:query', (req,res) => {
         console.log(error);
     });
     //-------------CREATION DE SPAWN 
-    const process = spawn('python',["./test.py", 
-                            query] ); 
+    const process = spawn('python',["./test.py", query] ); // Fonction faut lancer le bon python avec le json reçu 
   
     process.stdout.on('data', function(data) { 
         console.log(data.toString()); 
     } )
- 
-    //---------------------APPEL SPAWN POUR LANCER LE PYTHON--------------------- 
+
+    // TO BE DONE 
+ //-------------CREATE FUNCTION RE ORDER THE REPONS BY THE SCORE
+
+ //-----------------FETCH THE DATA TO REPONSE 
+
     //------------------CHEMIN TEST ./test.py
 
 });
