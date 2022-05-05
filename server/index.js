@@ -6,6 +6,16 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 //const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
 const NODE_ENV = process.env.NODE_ENV;
+const spawn = require("child_process"); 
+
+
+//--TUTO---------SPAWN NORMAL 
+//https://fr.acervolima.com/executez-un-script-python-a-partir-de-node-js-en-utilisant-la-methode-spawn-du-processus-enfant/
+
+//--TUTO-----------SPAWN ASYNC POUR LA SYNCHRO AVEC LE FRONT
+//https://www.npmjs.com/package/@expo/spawn-async
+
+
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -36,12 +46,16 @@ app.get('/results/:query', (req,res) => {
         });
 
 
-        
     })
     .catch(error => {
         res.send(error);
         console.log(error);
     });
+    //-------------CREATION DE SPAWN 
+
+    //---------------------APPEL SPAWN POUR LANCER LE PYTHON--------------------- 
+    //------------------CHEMIN TEST ./test.py
+
 });
 
 // app.get('/springer/:keyword', (req, res) => {

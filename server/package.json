@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/DeepBib/backend#readme",
   "dependencies": {
+    "@expo/spawn-async": "^1.6.0",
     "axios": "^0.26.0",
     "child_process": "^1.0.2",
     "dotenv": "^16.0.0",
