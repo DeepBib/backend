@@ -3,17 +3,18 @@ import torch
 import torch.nn.functional as F
 import pytorch_pretrained_bert
 import modeling_util
+from transformers import *
 
 #link to download a pretaing scibert model
 #https://s3-us-west-2.amazonaws.com/ai2-s2-research/scibert/pytorch_models/scibert_scivocab_uncased.tar 
 class SciBertRanker(torch.nn.Module):
     def __init__(self):
         super().__init__()
-        self.SciBERT_MODEL = 'scibert-scivocab-uncased'
-        self.CHANNELS = 12 + 1 # from bert-base-uncased
-        self.SciBERT_SIZE = 768 # from bert-base-uncased
-        self.scibert = CustomBertModel.from_pretrained(self.SciBERT_MODEL)
-        self.tokenizer = pytorch_pretrained_bert.BertTokenizer.from_pretrained(self.SciBERT_MODEL)
+        self.SciBERT_MODEL = 'allenai/scibert_scivocab_uncased'
+        self.CHANNELS = 12 + 1 # from scibert_scivocab_-uncased
+        self.SciBERT_SIZE = 768 # from scibert_scivocab_-uncased
+        self.bert = AutoModel.from_pretrained(self.SciBERT_MODEL)
+        self.tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
 
     def forward(self, **inputs):
         raise NotImplementedError
