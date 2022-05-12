@@ -269,6 +269,11 @@ class CustomBertModel(pytorch_pretrained_bert.BertModel):
         """
         Based on pytorch_pretrained_bert.BertModel
         """
+        print("INPUUUT IDS: ------->",type(input_ids))
+        ###############Bug fix code####################
+        if(type(input_ids) == "torch.cuda.FloatTensor"):
+            input_ids = torch.tensor(input_ids).to(torch.int64)
+        ############################################
         embedding_output = self.embeddings(input_ids, token_type_ids)
 
         extended_attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
