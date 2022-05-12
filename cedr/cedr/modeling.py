@@ -271,8 +271,7 @@ class CustomBertModel(pytorch_pretrained_bert.BertModel):
         """
         print("INPUUUT IDS: ------->",type(input_ids))
         ###############Bug fix code####################
-        if(type(input_ids) == "torch.cuda.FloatTensor"):
-            input_ids = torch.tensor(input_ids).to(torch.int64)
+        input_ids = torch.tensor(input_ids).to(torch.int64)
         ############################################
         embedding_output = self.embeddings(input_ids, token_type_ids)
 
