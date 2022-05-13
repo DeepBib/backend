@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 
 app.get('/results/:query', (req,res) => {
     const query = req.params.query;
-    axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=10`)
+    axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=100`)
     .then(response => {
         const xmlRes = response.data;
 
@@ -57,7 +57,7 @@ app.get('/results/:query', (req,res) => {
     process.stdout.on('data', function(data) { 
         console.log("J'ai peut-etre réussi mais à voir ...")
         console.log(data.toString()); 
-    } )
+    });
 
     // TO BE DONE 
  //-------------CREATE FUNCTION RE ORDER THE REPONS BY THE SCORE
