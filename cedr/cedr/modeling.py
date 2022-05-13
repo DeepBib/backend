@@ -61,7 +61,8 @@ class SciBertRanker(torch.nn.Module):
         toks[toks == -1] = 0 # remove padding (will be masked anyway)
 
         # execute BERT model
-        result = self.bert(toks, segment_ids.long(), mask)
+        
+        result = self.bert(toks, segment_ids, mask)
 
         # extract relevant subsequences for query and doc
         query_results = [r[:BATCH, 1:QLEN+1] for r in result]
