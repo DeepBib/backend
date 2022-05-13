@@ -272,8 +272,10 @@ class CustomBertModel(pytorch_pretrained_bert.BertModel):
         Based on pytorch_pretrained_bert.BertModel
         """
         print("INPUUUT IDS: ------->",type(input_ids))
+        print("INPUUUT IDS: ------->",type(token_type_ids))
         ###############Bug fix code####################
         input_ids = torch.tensor(input_ids).to(torch.int64)
+        token_type_ids = torch.tensor(token_type_ids).to(torch.int64)
         ############################################
         embedding_output = self.embeddings(input_ids, token_type_ids)
 
