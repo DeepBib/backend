@@ -32,7 +32,6 @@ def parser(name,jsonD) :
   
 def ranker():
     print("------Python--ranker---START---") 
-    
     parser = argparse.ArgumentParser('generating qrels and train pairs')
     parser.add_argument('--datafiles', type=argparse.FileType('rt'), nargs='+')
     args = parser.parse_args()
@@ -49,7 +48,8 @@ def ranker():
     os.system("python3 cedr/rerank.py \--model vanilla_bert \--datafiles parser/query.tsv parser/documents.tsv \--run data/arxivRun \--model_weights models/vbert/weights.p --out_path models/vbert/test.run") 
     print("------Python--ranker---END---") 
 
-  
+def score():
+    print("To be done add key score to each json element  and write json file with the new value")
    
 def main_cli(name,jsonD):
     parser(name,jsonD)
