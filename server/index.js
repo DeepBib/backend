@@ -2,12 +2,13 @@ const express = require('express');
 const axios = require('axios');
 const xml2js = require('xml2js');
 const { response } = require('express');
+const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 8000;
 //const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
 const NODE_ENV = process.env.NODE_ENV;
 const spawn = require("child_process").spawn; 
-
+let jsonDoc = null;
 
 //--TUTO---------SPAWN NORMAL 
 //https://fr.acervolima.com/executez-un-script-python-a-partir-de-node-js-en-utilisant-la-methode-spawn-du-processus-enfant/
@@ -41,24 +42,49 @@ app.get('/results/:query', (req,res) => {
             if(err) {
                 console.log(error);
             }
-            console.log(typeof(result.feed.entry));
+            console.log("reponse type in get :",typeof(result.feed.entry));
             res.status(200).json(result.feed.entry);
+            //jsonDoc = JSON.parse(result.feed.entry);
+            //console.log("JsonDoc in get =",jsonDoc)
+            const jsonDoc = JSON.stringify(result.feed.entry);
+            fs.writeFile('./../cedr/parser/response.json', jsonDoc, err => {
+                if (err) {
+                    console.log('Error writing file', err)
+                } else {
+                    console.log('Successfully wrote file')
+                }
+            });
         });
+        console.log("reponse type in get :",typeof(xmlRes))
+        //console.log(xmlRes)
 
-            //-------------CREATION DE SPAWN 
-        const process = spawn('python',["./../cedr/parser.py", query,] ); // Fonction faut lancer le bon python avec le json reçu 
-        console.log("TEST j'ai lancé ton python..");
-        process.stdout.on('data', function(data) { 
-            console.log("J'ai peut-etre réussi mais à voir ...")
-            console.log(data.toString()); 
-        });
+        
     })
     .catch(error => {
         res.send(error);
         console.log(error);
+    })
+    .then (() => {
+        
+    //-------------CREATION DE SPAWN 
+    const process = spawn('python',["./../cedr/test.py", query,'./response.json'] ); // Fonction faut lancer le bon python avec le json reçu 
+   
+    console.log("TEST j'ai lancé ton python..");
+    // -----------------DATA
+    process.stdout.on('data', function(data) { 
+        console.log("J'ai peut-etre réussi mais à voir ...")
+        console.log(data.toString()); 
+    });
+    process.stderr.on('data',(data)=>{
+        console.error('stderr :',data);
+    });
+    process.on("close",(code)=>{
+        console.error('Child process exited with code :',code);
     });
 
+    })
 
+    
     // TO BE DONE 
  //-------------CREATE FUNCTION RE ORDER THE REPONS BY THE SCORE
 
